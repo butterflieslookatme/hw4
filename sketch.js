@@ -1,5 +1,13 @@
 var cigars = [];
 var s = 0;
+var mySound;
+
+
+function preload() {
+  soundFormats("wav");
+  mySound = loadSound("smoke.wav");
+  
+}
 
 const num = 5;
 
@@ -64,6 +72,10 @@ function on(){
    background(248, 240, 223); 
   push();
     noStroke()
+  //body
+  fill(245, 221, 203)
+  rect(25, 50, 355, 400, 20)
+  rect(155,0,100,60)
   //lung
   fill (246, 200, 218)
   rect(70, 80, 120, 200, 60, 20, 20, 15);
@@ -72,6 +84,7 @@ function on(){
   noFill();
   
  //arc
+  stroke(255)
   bezier(130, 200, 140, 50, 200, 100, 200, 20)
   bezier(290, 200, 270, 50, 210, 100, 210, 20)
   
@@ -92,14 +105,19 @@ function mousePressed() {
     if((cigars[i][0]-5<mouseX && mouseX<cigars[i][0]+15) && (cigars[i][1]-5<mouseY && mouseY<cigars[i][1]+60)) {
       cigars[i][0] = random(width);
       cigars[i][1] = -70;
+      //cigra sound 
+      if (mouseIsPressed) {
+    mySound.play();
+  }
     }
 
   }
 
 function ends(){
-		background(186, 64, 71)
-		textAlign(CENTER);
-        fill(255);
-		text('GAME OVER', width / 2, height / 2)
-		text('click to play again', width / 2, height / 2 + 40);
+    background(186, 64, 71)
+	textAlign(CENTER);
+    fill(255);
+	text('GAME OVER', width / 2, height / 2)
+	text('click to play again', width / 2, height / 2 + 40);
+    
 }
